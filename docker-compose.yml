@@ -1,0 +1,19 @@
+services:
+  document-generator:
+    build:
+      context: .
+    container_name: document-generator
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+    ports:
+      - "5173:3001"
+    volumes:
+      - uploads:/app/server/uploads
+      - generated:/app/server/generated
+
+volumes:
+  uploads:
+  generated:
+*** End Patch

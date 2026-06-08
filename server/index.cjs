@@ -11,6 +11,8 @@ const { BUILT_IN_TEMPLATES } = require('./builtInTemplates.cjs');
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
+const isProduction = process.env.NODE_ENV === 'production';
+const clientDistDir = path.join(__dirname, '..', 'dist');
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -142,6 +144,26 @@ app.post('/api/templates/:id/render', async (request, response, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+if (isProduction) {
+  app.use(express.static(clientDistDir));
+
+  app.get('*', (request, response, next) => {
+    if (request.path.startsWith('/api')) {
+      return next();
+    }
+
+    response.sendFile(path.join(clientDistDir, 'index.html'), (error) => {
+      if (error) {
+        next(error);
+      }
+    });
+  });
+}
+
+app.use('/api', (_request, response) => {
+  response.status(404).json({ error: 'API route not found.' });
 });
 
 app.use((error, _request, response, _next) => {

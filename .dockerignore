@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+dist
+server/generated
+server/uploads
+output
+*.log
+.git
+.gitignore
