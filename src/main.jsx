@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   AlertCircle,
@@ -392,7 +392,6 @@ function App() {
           </span>
           <div>
             <h1>Генератор документов</h1>
-          <p>Заполнение документов по шаблону</p>
           </div>
         </div>
         <StatusBadge active={Boolean(completion?.ready)} label={topStatusLabel} />
@@ -404,7 +403,6 @@ function App() {
             <div className="panel-heading">
             <div>
               <h2>Шаблон</h2>
-              <p>Выберите готовый или загрузите Word</p>
             </div>
           </div>
             <div className="template-source-actions">
@@ -537,7 +535,6 @@ function TemplateLibraryModal({ open, templates, loading, selectedSlug, onSelect
           <div>
             <span>Библиотека шаблонов</span>
             <h2>Что нужно оформить?</h2>
-            <p>Выберите готовую форму, затем заполните поля и скачайте документ.</p>
           </div>
           <button className="icon-button" type="button" onClick={onClose} title="Закрыть">
             <X size={18} />
@@ -648,7 +645,6 @@ function WorkflowCard({ hasTemplate, hasData, hasDocument }) {
       <div className="panel-heading">
         <div>
           <h2>Порядок работы</h2>
-          <p>Три простых шага</p>
         </div>
       </div>
       <div className="step-list">
